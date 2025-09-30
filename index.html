@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Minhas Atividades 🌸</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f8f9fa;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #ff6fa9 0%, #e83e8c 50%, #d63384 100%);
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Carrossel Section */
+        .card-carousel {
+            background: linear-gradient(135deg, #ffeef8 0%, #f8e6ff 100%);
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #e83e8c;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 60px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 20px;
+            flex: 0 0 320px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(232, 62, 140, 0.1);
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6fa9, #e83e8c);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(232, 62, 140, 0.2);
+            border-color: rgba(232, 62, 140, 0.3);
+        }
+
+        .activity-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .activity-number {
+            background: linear-gradient(135deg, #ff6fa9, #e83e8c);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(232, 62, 140, 0.3);
+        }
+
+        .activity-card h3 {
+            color: #e83e8c;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .activity-preview {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .btn-view-details {
+            background: linear-gradient(135deg, #ff6fa9, #e83e8c);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-weight: 500;
+            font-size: 1rem;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-view-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-view-details:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(232, 62, 140, 0.4);
+        }
+
+        .btn-view-details:hover::before {
+            left: 100%;
+        }
+
+        /* Botões do Carrossel */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            color: #e83e8c;
+            border: 3px solid #e83e8c;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(232, 62, 140, 0.2);
+        }
+
+        .carousel-btn:hover {
+            background: #e83e8c;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 25px rgba(232, 62, 140, 0.4);
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        .carousel-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .carousel-btn:disabled:hover {
+            background: white;
+            color: #e83e8c;
+            transform: translateY(-50%);
+            box-shadow: 0 5px 15px rgba(232, 62, 140, 0.2);
+        }
+
+        /* Indicadores */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(232, 62, 140, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .indicator.active {
+            background: #e83e8c;
+            transform: scale(1.2);
+        }
+
+        /* Modal Customizado */
+        .modal-content {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #ff6fa9, #e83e8c);
+            color: white;
+            border: none;
+            padding: 25px 30px;
+        }
+
+        .modal-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-info {
+            margin-bottom: 20px;
+        }
+
+        .modal-info strong {
+            color: #e83e8c;
+            font-weight: 600;
+        }
+
+        .modal-link {
+            background: linear-gradient(135deg, #ff6fa9, #e83e8c);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal-link:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(232, 62, 140, 0.3);
+        }
+
+        .modal-image {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .activity-card {
+                flex: 0 0 280px;
+            }
+
+            .carousel-track {
+                padding: 20px 50px;
+            }
+
+            .carousel-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .activity-card {
+                flex: 0 0 260px;
+                padding: 20px;
+            }
+
+            .carousel-track {
+                padding: 20px 40px;
+            }
+
+            .carousel-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>🌸 Iasmyn Portifólio 🌸</h1>
+            <p>Aqui você encontra todas as minhas  atividades feitas em sala, com links, imagens e descrições detalhadas.</p>
+        </div>
+    </header>
+
+    <!-- Carrossel Section -->
+    <section class="card-carousel">
+        <div class="carousel-container">
+            <div class="section-title">
+                <h2>Portfolio de Atividades</h2>
+                <p>Explore meus projetos e trabalhos desenvolvidos durante o curso</p>
+            </div>
+
+            <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+            
+            <div class="carousel-track" id="carouselTrack">
+                <!-- As atividades serão geradas dinamicamente -->
+            </div>
+
+            <button class="carousel-btn next" id="nextBtn">&#10095;</button>
+        </div>
+
+        <div class="carousel-indicators" id="indicators"></div>
+    </section>
+
+    <!-- Modais serão gerados dinamicamente -->
+    <div id="modalsContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dados das atividades
+        const activities = [
+            { 
+                id: 1, 
+                title: "Atividade 1", 
+                preview: "Testando um Game - Desenvolva um jogo com IA que calcule uma pontuaçãoo. ",
+                description: "Atividade sobre teste de um jogo, onde fiz um formulário sobre um game.",
+                link: "https://www.canva.com/design/DAGo7gnSqsA/5icF-kYZhXHQ1YgZ1B_Jvw/edit?utm_content=DAGo7gnSqsA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                image: "https://i.pinimg.com/736x/8d/03/11/8d0311eb1c5f4223362ff57a17799635.jpg"
+            },
+            { 
+                id: 2, 
+                title: "Atividade 2", 
+                preview: "Cronograma", 
+                description: "Cronograma TCC para eu ter uma base de como criar meu tcc.",
+                link: "https://www.canva.com/design/DAGvOjbVtsE/Pv4lKa6NvdBNbOxy35dykg/edit?utm_content=DAGvOjbVtsE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                image: "https://i.pinimg.com/736x/26/7b/83/267b83babdf80dd76a896ed0f9c69584.jpg"
+
+            },
+            { 
+                id: 3, 
+                title: "Atividade 3", 
+                preview: "Testando um Game - Desenvolva um jogo com IA que calcule uma pontuação.", 
+                description: "Tabela de atividade para site comparativo, feito com meu amigo mateus.",
+                link: "https://docs.google.com/document/d/1C-76uQIoHtQ27fuKihmPcA_RIJdMKbFSgwR_Akws2wc/edit?usp=sharing",
+                image: "https://i.pinimg.com/1200x/f7/9b/fd/f79bfd9d2f5f1086bddd766645622317.jpg"
+            },
+            { 
+                id: 4, 
+                title: "Atividade 4", 
+                preview: "Teste de Software", 
+                description: "Relatório sobre o Kahoot,em forma de slide.",
+                link: "https://www.canva.com/design/DAGwhOt4ySY/B_uVIHu61zKbhD-vvKKwEg/edit?utm_content=DAGwhOt4ySY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                image: "https://i.pinimg.com/736x/bb/0a/1b/bb0a1bc380a90adc7636b834a54a239b.jpg"
+            },
+            { 
+                id: 5, 
+                title: "Atividade 5", 
+                preview: "Testes", 
+                description: "Elaborei um documento de caso de teste ",
+                link: "https://www.canva.com/design/DAGxLnAuZBE/-Ap_Bgkv3ienaWSHhSdugQ/edit?utm_content=DAGxLnAuZBE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                image: "https://i.pinimg.com/1200x/c7/e1/b1/c7e1b104ec718a3d299b795d67ef3a7e.jpg"
+            },
+            { 
+                id: 6, 
+                title: "Atividade 6", 
+                preview: "Testes", 
+                description: "Percentis , Escore Z, T-Score",
+                link: "https://www.canva.com/design/DAGx1bRlAy4/Mm5aFQFOs_v7d-h07KWLew/edit?utm_content=DAGx1bRlAy4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                image: "https://i.pinimg.com/1200x/2f/a2/bb/2fa2bb717e5881d4b624d78c8b5e7b49.jpg"
+            },
+            { 
+                id: 7, 
+                title: "Atividade 7", 
+                preview: "O que é Arduino? (Quizizz)", 
+                description: "Quiz",
+                image: "https://i.pinimg.com/736x/b8/83/36/b883366481a0222644f56e713edd33bd.jpg"
+            },
+            { 
+                id: 8, 
+                title: "Atividade 8", 
+                preview: "Aula 1 - Bootstrap", 
+                description: "página front-end com TEMA LIVRE",
+                link: "https://www.canva.com/design/DAG0cxw_hKo/js8se4MnbtvE27XwOhWaXQ/edit?utm_content=DAG0cxw_hKo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                image: "https://i.pinimg.com/736x/44/16/33/441633a1b0bee9447e9bed3fa205e478.jpg"
+            },
+            { 
+                id: 9, 
+                title: "Atividade 9", 
+                preview: "Quiz - DDS - Proteção Respiratória", 
+                
+            },
+            { 
+                id: 10, 
+                title: "Atividade 10", 
+                preview: "Bootstrap - Aula 2", 
+                description: "Desenvolver um site preferencialmente para dispositivos móveis de uma academia com o nome FIT CLASS.",
+                link: "https://www.canva.com/design/DAG0c0io_PM/da1RWQC9TBM2YzZxiPiJEQ/edit?utm_content=DAG0c0io_PM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                image: "https://i.pinimg.com/736x/67/1b/59/671b59411a699238097a043775b5a13a.jpg"
+            },
+            { 
+                id: 11, 
+                title: "Atividade 11", 
+                preview: "Roteiro Final do Podcast", 
+                description: "Roteiro do podcast",
+                link: "https://www.canva.com/design/DAG0c8l1nHI/LSflBfLOjFmAH8g6vLIhIg/edit?utm_content=DAG0c8l1nHI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+                image: "https://lh3.googleusercontent.com/drive-storage/AJQWtBPITNQM451oA-Qh7tcJiNC3M3hLMYMltyXPNDggF18wepgEzoVecePC4bUiC3CnOC9AhUtqRUydrSm8k-2KgIzXwrEYV991hJ9JcbOUuwnMIVg=w1897-h889"
+            },
+            { 
+                id: 12, 
+                title: "Atividade 12", 
+                preview: "Vídeo podcast", 
+                description: "PodCast IOT",
+                link: "https://example.com/atividade12https://drive.google.com/file/d/1AJp3qFCqdeAp492Mzhze8uhcvd8GPM66/view?usp=sharing",
+                image: "https://lh3.googleusercontent.com/drive-storage/AJQWtBPITNQM451oA-Qh7tcJiNC3M3hLMYMltyXPNDggF18wepgEzoVecePC4bUiC3CnOC9AhUtqRUydrSm8k-2KgIzXwrEYV991hJ9JcbOUuwnMIVg=w1897-h889"
+            },
+            { 
+                id: 13, 
+                title: "Atividade 13", 
+                preview: "IoT Arduino: 5 - A Protoboard", 
+                description: "Atividade - Tinkercad",
+                link: "https://example.com/atividade13",
+                image: "https://lh3.googleusercontent.com/drive-storage/AJQWtBN4TJzimG3tp8nb2NcqJk-wJbW5m94hWAwtyllfIrWSGZliceszBrACqnY7ea1jTNSNAjasu7D_ljXlU5kWfbb-pWqGflP59Few0isNgNQRxis=w1897-h889"
+            },
+            { 
+                id: 14, 
+                title: "Atividade 14", 
+                preview: "IoT | Arduino: Quiz Revisão das Aulas 1 até 5", 
+               
+            },
+            { 
+                id: 15, 
+                title: "Atividade 15", 
+                preview: "Bootstrap - Aula 3 - Atividade", 
+                description: "Site para celular (mobile) utilizando o Pills ou Tabs do Navbar",
+                image: "https://lh3.googleusercontent.com/drive-storage/AJQWtBOUjeqx4ACjjc1z-wuWPHfAHwx5wgG9UDdJgmh8E71lNgIJ1tFqeVlT9XIbihjIMXrD6gLfk54z01et8GWHnwRn46C2A_gtJjoSW-p714gxQNo=w1897-h889"
+            },
+            { 
+                id: 16, 
+                title: "Atividade 16", 
+                preview: "IoT | Arduino Revisão dos Principais Elementos", 
+                image: "https://lh3.googleusercontent.com/drive-storage/AJQWtBOrUg57Y-1stR0lXnXwDa9h2LJwKV1g1JhZFZA1d1D4d05To3velGVDGs_boNnMuoXAOxBpJMY22s-DECA-KRu5wYmmqogifm7SKoXHXYmkRHM=w1897-h889"
+            },
+            { 
+                id: 17, 
+                title: "Atividade 17", 
+                preview: "IoT | Arduino: Quiz Aula 6: Lógica de Programação de dados", 
+                image: "https://i.pinimg.com/736x/b8/83/36/b883366481a0222644f56e713edd33bd.jpg"
+            },
+            { 
+                id: 18, 
+                title: "Atividade 18", 
+                description:"Circuito funcionando no Tinkercad",
+                preview: "IoT | Arduino: 7 - Introdução à Eletrônica o e mapas", 
+                image: "https://lh3.googleusercontent.com/drive-storage/AJQWtBPLEz93XemmgKMewma9CPiERyBNDkcWfc7o_tiWc1fcrao_wzHDahrocrnKJNHnni6su6dC_1y-YVvyhYvYYHA2TiYXuaZeSJJqswuzzIFQgAk=w1897-h889"
+            },
+            { 
+                id: 19, 
+                title: "Atividade 19", 
+                preview: "TCC - Entrega Parcial", 
+                description: "Entregar o que realizei sobre o TCC, até o momento.",
+                link: "c:\Users\SESI 24\AppData\Local\Packages\Microsoft.ScreenSketch_8wekyb3d8bbwe\TempState\Captura de tela 2025-09-30 085930.png",
+                image: "https://i.pinimg.com/736x/0e/22/13/0e2213f4c2cbe2089e3cc76cb092a677.jpg"
+            },
+            { 
+                id: 20, 
+                title: "Atividade 20", 
+                preview: "IoT | Arduino: Quiz Aula 7: Introdução à Eletrônica", 
+                image: "https://i.pinimg.com/736x/b8/83/36/b883366481a0222644f56e713edd33bd.jpg"
+            },
+            { 
+                id: 21, 
+                title: "Atividade 21", 
+                preview: "ProjeIoT | Arduino: 8 - Piscando um led to final integrado", 
+                description: "Arduino Piscando",
+                image: "https://lh3.googleusercontent.com/drive-storage/AJQWtBNCyEqnfFBmbVCOn61WgoAqtye9K26XFIeA7GfHKrzmvAb0abZsAaMGdolcwYtofcWRxShBJoqrgNMZ--QVo4fCGVFxdEeuCXSyUWGOArI28SA=w1897-h889"
+            }
+        ];
+
+        // Gerar cards das atividades
+        function generateActivityCards() {
+            const track = document.getElementById('carouselTrack');
+            const modalsContainer = document.getElementById('modalsContainer');
+            
+            activities.forEach(activity => {
+                // Criar card
+                const card = document.createElement('div');
+                card.className = 'activity-card';
+                card.innerHTML = `
+                    <div class="activity-number">${activity.id}</div>
+                    <h3>${activity.title}</h3>
+                    <div class="activity-preview">${activity.preview}</div>
+                    <button class="btn-view-details" data-bs-toggle="modal" data-bs-target="#modal${activity.id}">
+                        Ver Detalhes
+                    </button>
+                `;
+                track.appendChild(card);
+
+                // Criar modal
+                const modal = document.createElement('div');
+                modal.className = 'modal fade';
+                modal.id = `modal${activity.id}`;
+                modal.setAttribute('tabindex', '-1');
+                modal.setAttribute('aria-labelledby', `modal${activity.id}Label`);
+                modal.setAttribute('aria-hidden', 'true');
+                modal.innerHTML = `
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title" id="modal${activity.id}Label">${activity.title}</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-info">
+                                    <strong>Descrição:</strong> ${activity.description}
+                                </div>
+                                <div class="modal-info">
+                                    <strong>Link do projeto:</strong> 
+                                    <a href="${activity.link}" target="_blank" class="modal-link">🔗 Abrir projeto</a>
+                                </div>
+                                <div class="modal-info">
+                                    <strong>Preview:</strong>
+                                </div>
+                                <img src="${activity.image}" class="img-fluid modal-image" alt="Preview da ${activity.title}">
+                            </div>
+                        </div>
+                    </div>
+                `;
+                modalsContainer.appendChild(modal);
+            });
+        }
+
+        // Classe do Carrossel
+        class ActivityCarousel {
+            constructor() {
+                this.track = document.getElementById('carouselTrack');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.indicators = document.getElementById('indicators');
+                this.cardWidth = 345; // 320px + 25px gap
+                this.currentIndex = 0;
+                this.maxIndex = 0;
+                
+                this.init();
+            }
+
+            init() {
+                setTimeout(() => {
+                    this.updateMaxIndex();
+                    this.createIndicators();
+                    this.updateButtons();
+                    this.bindEvents();
+                }, 100);
+            }
+
+            updateMaxIndex() {
+                const containerWidth = this.track.offsetWidth;
+                const visibleCards = Math.floor(containerWidth / this.cardWidth);
+                this.maxIndex = Math.max(0, activities.length - visibleCards);
+            }
+
+            createIndicators() {
+                const numIndicators = this.maxIndex + 1;
+                
+                for (let i = 0; i < numIndicators; i++) {
+                    const indicator = document.createElement('div');
+                    indicator.classList.add('indicator');
+                    if (i === 0) indicator.classList.add('active');
+                    
+                    indicator.addEventListener('click', () => {
+                        this.goToIndex(i);
+                    });
+                    
+                    this.indicators.appendChild(indicator);
+                }
+            }
+
+            bindEvents() {
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+                
+                // Touch support
+                let startX = 0;
+                let scrollLeft = 0;
+
+                this.track.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    scrollLeft = this.track.scrollLeft;
+                });
+
+                this.track.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    const x = e.touches[0].clientX;
+                    const walk = (startX - x) * 2;
+                    this.track.scrollLeft = scrollLeft + walk;
+                });
+
+                this.track.addEventListener('scroll', () => {
+                    this.currentIndex = Math.round(this.track.scrollLeft / this.cardWidth);
+                    this.updateButtons();
+                    this.updateIndicators();
+                });
+
+                window.addEventListener('resize', () => {
+                    this.updateMaxIndex();
+                    this.updateButtons();
+                });
+            }
+
+            updateIndicators() {
+                const indicators = this.indicators.querySelectorAll('.indicator');
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentIndex);
+                });
+            }
+
+            prev() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                    this.goToIndex(this.currentIndex);
+                }
+            }
+
+            next() {
+                if (this.currentIndex < this.maxIndex) {
+                    this.currentIndex++;
+                    this.goToIndex(this.currentIndex);
+                }
+            }
+
+            goToIndex(index) {
+                this.currentIndex = index;
+                this.track.scrollTo({
+                    left: index * this.cardWidth,
+                    behavior: 'smooth'
+                });
+                this.updateButtons();
+                this.updateIndicators();
+            }
+
+            updateButtons() {
+                this.prevBtn.disabled = this.currentIndex <= 0;
+                this.nextBtn.disabled = this.currentIndex >= this.maxIndex;
+            }
+        }
+
+        // Inicializar quando o DOM carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            generateActivityCards();
+            new ActivityCarousel();
+        });
+    </script>
+</body>
+<!-- ===== Formulário (usei exatamente seu markup + id no form) ===== -->
+<section class="container my-5">
+  <div class="row">
+    <div class="col-lg-6 mx-auto">
+      <h2 class="text-center mb-4" style="color:#e83e8c">💬 Formulário</h2>
+
+      <form id="exampleForm" class="card p-4 shadow-sm border-0">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" required>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn w-100"
+          style="background: linear-gradient(135deg, #ff6fa9, #e83e8c); color: white; border-radius: 25px; font-weight: 500;">
+          Submit
+        </button>
+      </form>
+
+      <!-- Área que mostra os envios (JSON) -->
+      <div id="submissions" class="mt-4"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Script que salva em JSON (localStorage) e renderiza abaixo ===== -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('exampleForm');
+    const emailEl = document.getElementById('exampleInputEmail1');
+    const passEl  = document.getElementById('exampleInputPassword1');
+    const checkEl = document.getElementById('exampleCheck1');
+    const submissionsEl = document.getElementById('submissions');
+
+    // Carrega do localStorage (ou cria array vazio)
+    const STORAGE_KEY = 'formSubmissions';
+    let submissions = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+    function renderSubmissions() {
+      if (!submissions.length) {
+        submissionsEl.innerHTML = '<p class="text-muted">Nenhum envio ainda.</p>';
+        return;
+      }
+
+      submissionsEl.innerHTML = `
+        <ul class="list-group">
+          ${submissions.map((s, i) => `
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <strong>#${i+1} — ${escapeHtml(s.email)}</strong>
+                <small class="text-muted">${new Date(s.createdAt).toLocaleString()}</small>
+              </div>
+              <div class="mt-2">
+                <span>Senha: <code>${'*'.repeat(6)}</code> <small class="text-muted">(não armazenamos senha em texto)</small></span><br>
+                <span>Aceitou: ${s.accepted ? 'Sim' : 'Não'}</span>
+              </div>
+            </li>
+          `).join('')}
+        </ul>
+      `;
+    }
+
+    // Função simples para evitar injeção na UI (escapa < > &)
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Renderiza existentes ao carregar
+    renderSubmissions();
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const email = emailEl.value.trim();
+      const password = passEl.value; // NÃO vamos salvar a senha em texto no storage por segurança
+      const accepted = checkEl.checked;
+
+      if (!email || !password) {
+        alert('Preencha email e senha.');
+        return;
+      }
+
+      // Monta objeto (não guardamos senha em claro: apenas registramos que senha foi informada)
+      const entry = {
+        email,
+        // nunca armazene senhas reais em localStorage em apps reais
+        // aqui só guardamos um flag para indicar que havia senha (demo)
+        accepted,
+        createdAt: new Date().toISOString()
+      };
+
+      submissions.push(entry);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(submissions));
+
+      // opcional: mostrar no console a estrutura JSON completa
+      console.log('Formulários cadastrados (JSON):', submissions);
+
+      renderSubmissions();
+      form.reset();
+      alert('Formulário enviado com sucesso!');
+    });
+  });
+</script>
+
+</html>
